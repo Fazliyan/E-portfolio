@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glam Portfolio | Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: url('image/wallpaper.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      font-family: 'Raleway', sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.636);
+      backdrop-filter: blur(10px);
+      padding: 20px 0;
+      z-index: 100;
+    }
+
+    header nav.primary {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 120px;
+    }
+
+    header nav.primary a {
+      color: #d4af37;
+      font-weight: 600;
+      padding: 5px 10px;
+      position: relative;
+    }
+
+    header nav.primary a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: #d4af37;
+    }
+
+
+    aside.sidebar {
+      position: fixed;
+      top: 60px;
+      left: -180px;
+      width: 180px;
+      height: calc(100vh - 60px);
+      background: rgba(20, 20, 20, 0.8);
+      padding-top: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out;
+    }
+
+    aside.sidebar a {
+      display: block;
+      padding: 10px 20px;
+      color: #d4af37;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    
+    .sidebar-trigger {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      color: #d4af37;
+      z-index: 101;
+    }
+
+    .sidebar-trigger:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    
+    .container {
+      margin: 80px auto 40px 220px;
+      max-width: 1000px;
+      padding: 0 20px;
+    }
+
+    
+    .profile-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .profile-left {
+      flex: 1;
+      max-width: 45%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-left img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 10px;
+      border: 4px solid #374ed4;
+      object-fit: cover;
+      filter: drop-shadow(0 0 10px #373fd4);
+    }
+
+    .profile-right {
+      flex: 1;
+      max-width: 50%;
+    }
+
+    .profile-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .headline {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    
+    section {
+      background: rgba(20, 18, 18, 0.6);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
+    .skill-bar {
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(212, 175, 55, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-inner {
+      width: 0;
+      height: 100%;
+      background: #d4af37;
+      transition: width 1s ease-out;
+    }
+
+#about {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 35px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  color: #f5f5f5;
+}
+
+#about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#about p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+#experience {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  color: #f5f5f5;
+  margin-bottom: 40px;
+}
+
+#experience h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.experience-item {
+  margin-bottom: 30px;
+}
+
+.experience-item h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.experience-item span {
+  display: block;
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.experience-item p {
+  line-height: 1.7;
+  color: #ddd;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+    @media (max-width: 768px) {
+      .profile-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-left,
+      .profile-right {
+        max-width: 100%;
+      }
+
+      .container {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      aside.sidebar {
+        display: none;
+      }
+    }
+    #achievements {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  color: #f5f5f5;
+  margin-bottom: 40px;
+}
+
+#achievements h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.achievements-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.achievements-list li {
+  margin-bottom: 20px;
+  line-height: 1.8;
+  color: #ddd;
+  position: relative;
+  padding-left: 0.5em;
+}
+
+.achievements-list li strong {
+  color: #fff;
+}
+
+  </style>
+</head>
+<body>
+  
+  <header>
+    <nav class="primary">
+      <a href="profile.html">Profile</a>
+      <a href="lifestyle.html">Lifestyle</a>
+      <a href="gallery.html">Galleries</a>
+    </nav>
+  </header>
+  
+  <aside class="sidebar">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+  </aside>
+  
+  <div class="sidebar-trigger">
+    ★
+  </div>
+  
+  <main class="container">
+    <div class="profile-wrapper">
+      <div class="profile-left">
+        <img src="image/profile.jpg" alt="Photo">
+      </div>
+      <div class="profile-right">
+        <div class="profile-content">
+<section class="hero-intro">
+  <h1>
+    <span class="role">Computational Linguist</span>  
+    <span class="divider">|</span>  
+    <span class="tagline">Bridging Language & Technology to Solve Real-World Challenges</span>
+  </h1>
+  <p class="headline">⚡ Harnessing the Power of Language & Technology for Innovation</p>
+</section>
+        </div>
+      </div>
+    </div>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    Hi! I’m <strong>Ahmad Fazliyan Bin Subli</strong>, a passionate student currently pursuing a <strong>Bachelor of Arts (Hons.) in Linguistics and Information Technology</strong> at <strong>Universiti Utara Malaysia</strong>. My academic journey uniquely blends the art of language with the precision of technology—two worlds I’m deeply fascinated by.
+  </p>
+  <p>
+    My studies explore the richness of <strong>linguistics</strong>—including <em>phonetics, syntax, and semantics</em>—while also immersing me in the ever-evolving realm of <strong>information technology</strong>, from <em>programming</em> and <em>artificial intelligence (AI)</em> to <em>natural language processing (NLP)</em>. This interdisciplinary approach has sparked a strong interest in using computational methods to solve linguistic problems.
+  </p>
+  <p>
+    I’m particularly drawn to how <strong>data science and AI</strong> can enhance human-computer interaction, language modeling, and communication accessibility. With hands-on experience in both technical and linguistic domains, I’m equipping myself with the tools to contribute meaningfully to the field of <strong>computational linguistics</strong>.
+  </p>
+  <p>
+    Eager to innovate and always curious, I aim to work on projects that bridge language and technology—developing solutions that not only push boundaries but also make a difference. Whether it’s in <strong>software development, speech technology, or language-driven AI</strong>, I’m excited to help shape a future where technology understands us better.
+  </p>
+</section>
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="experience-item">
+    <h3>Student — Universiti Utara Malaysia</h3>
+    <span><em>Oct 2022 – Present</em></span>
+    <p>
+      Currently pursuing a <strong>Bachelor of Arts (Hons.) in Linguistics and Information Technology</strong>, a program that uniquely combines language science with modern computing. Through this interdisciplinary curriculum, I'm gaining expertise in both linguistic theory and practical tech applications.
+    </p>
+    <p>
+      <strong>Key Coursework:</strong> <em>Natural Language Processing (NLP), Programming, Data Science, Phonetics, Syntax, Semantics</em> — enabling me to build foundational and applied knowledge in both disciplines.
+    </p>
+    <p>
+      <strong>Academic Projects:</strong> Engaged in hands-on projects such as <em>text classification, sentiment analysis, and basic machine translation systems</em>. These projects strengthen my ability to apply machine learning techniques and programming skills to linguistic data.
+    </p>
+  </div>
+  <div class="experience-item">
+    <h3>Volunteer — Linguistics and Information Technology Club</h3>
+    <span><em>Jan 2023 – Present</em></span>
+    <p>
+      Contributing as a volunteer in a student-led community promoting the integration of language and technology. I assist in curating events and facilitating student involvement in linguistics and information technology.
+    </p>
+    <p>
+      <strong>Key Roles:</strong> Helped organize <em>AI-focused workshops, NLP hackathons, and speaker sessions</em> featuring researchers and industry professionals.
+    </p>
+    <p>
+      <strong>Outreach Efforts:</strong> Played a role in designing educational materials and delivering mini-workshops on how NLP and AI impact industries like <em>healthcare, education, and digital communication</em>.
+    </p>
+  </div>
+<section id="achievements">
+  <h2>Key Achievements</h2>
+  <ul class="achievements-list">
+   
+    <li>
+      <strong>🎓 Academic Excellence:</strong>
+      Consistently maintained outstanding academic performance in courses such as <em>Natural Language Processing, Semantics, and Phonetics & Phonology</em>.
+    </li>
+    <li>
+      <strong>🧠 Practical Application of Linguistics:</strong>
+      Applied theoretical knowledge through hands-on projects involving <em>language modeling, text analysis, and computational linguistics</em>.
+    </li>
+
+    <li>
+      <strong>🤝 Community Engagement:</strong>
+      Actively contributed to the <em>Linguistics and Information Technology Club</em> by organizing events, facilitating workshops, and advocating for interdisciplinary learning.
+    </li>
+    <li>
+      <strong>🏅 Great Scorer in Linguistics Subjects (2024):</strong>
+      Earned top score in core courses, showcasing strong capabilities in linguistics. 
+    </li>
+
+    <li>
+      <strong>📄 Leadership in Student Research Project (2023):</strong>
+      Led a 4-member team in a research project on <em>AI and language translation</em>.
+    </li>
+    <li>
+      <strong>💡 Volunteer at Language and IT Workshops (2022–2023):</strong>
+      Volunteered in educational outreach programs, introducing high school students to the exciting world of <em>linguistics and AI</em>.
+    </li>
+    <li>
+      <strong>🗣️ Enhanced Communication Skills:</strong>
+      Participated in public speaking , honing the ability to convey complex technical concepts to diverse audiences.
+    </li>
+
+    <li>
+      <strong>🛠️ Technical Project – NLP Sentiment Analysis (2024):</strong>
+      Built a tool for analyzing sentiment in social media posts, demonstrating applied skills in <em>Python, NLP libraries, and real-world data interpretation</em>.
+    </li>
+  </ul>
+</section>
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <div class="skill-bar">
+        <span class="skill-name">Natural Language Processing (NLP)</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 90%;"></div>
+        </div>
+      </div>
+
+      <div class="skill-bar">
+        <span class="skill-name">Phonetics & Phonology</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <div class="skill-bar">
+        <span class="skill-name">Syntax & Semantics</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div class="skill-bar">
+        <span class="skill-name">Programming Languages (Python, Java, C++)</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 92%;"></div>
+        </div>
+      </div>
+
+      <div class="skill-bar">
+        <span class="skill-name">Machine Learning & Data Analytics</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 85%;"></div>
+        </div>
+      </div>
+
+          <div class="skill-bar">
+        <span class="skill-name">Database Management (SQL, NoSQL)</span>
+        <div class="bar">
+          <div class="bar-inner" style="width: 80%;"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    
+    const sidebar = document.querySelector('aside.sidebar');
+    const sidebarTrigger = document.querySelector('.sidebar-trigger');
+
+    sidebarTrigger.addEventListener('mouseenter', () => {
+      sidebar.style.left = '0'; 
+    });
+
+    
+    sidebar.addEventListener('mouseleave', () => {
+      sidebar.style.left = '-180px'; 
+    });
+
+  </script>
+</body>
+</html>
